@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>Liversen.DependencyCop</RootNamespace>
+  </PropertyGroup>
+  <Import Project="..\_Development\TestProject.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\Liversen.DependencyCop\Liversen.DependencyCop.csproj" />
+  </ItemGroup>
+</Project>

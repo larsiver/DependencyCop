@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk" DefaultTargets="_Build;_Test">
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <SolutionFile>$(MSBuildProjectDirectory)\..\Liversen.DependencyCop.sln</SolutionFile>
+    <SolutionDir>$(MSBuildProjectDirectory)\..</SolutionDir>
+    <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="ReportGenerator" Version="4.8.12"/>
+  </ItemGroup>
+  <Target Name="_Build" DependsOnTargets="_Restore">
+    <PropertyGroup>
+      <ArtifactDirectory>$(MSBuildProjectDirectory)\obj\Artifacts</ArtifactDirectory>
+    </PropertyGroup>
+    <MakeDir Directories="$(ArtifactDirectory)"/>
+    <MSBuild Projects="$(SolutionFile)" Targets="build;publish" Properties="Configuration=$(Configuration);NoRestore=true" BuildInParallel="true"/>
+    <!-- To force MSBuild to generate target PublishArtifacts in .sln.metaproj file, a dummy property must be specified. -->
+    <MSBuild Projects="$(SolutionFile)" Targets="PublishArtifacts" Properties="Configuration=$(Configuration);ArtifactDirectory=$(ArtifactDirectory);DummyProperty=dummyValue" BuildInParallel="true"/>
+  </Target>
+  <Target Name="_Test">
+    <PropertyGroup>
+      <TestResultsDirectory>$(MSBuildProjectDirectory)\obj\TestResults</TestResultsDirectory>
+      <TestReportDirectory>$(MSBuildProjectDirectory)\obj\TestReport</TestReportDirectory>
+      <TestCoverageArguments>--collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura,opencover</TestCoverageArguments>
+    </PropertyGroup>
+    <RemoveDir Directories="$(TestResultsDirectory);$(TestReportDirectory)"/>
+    <Exec Command='dotnet test $(SolutionFile) -c $(Configuration) --no-restore --no-build --logger "trx" --results-directory $(TestResultsDirectory) $(TestCoverageArguments)'/>
+    <ItemGroup>
+      <CoverageFile Include="$(SolutionDir)\**\obj\TestResults\*\coverage.cobertura.xml"/>
+      <CoverageFile Include="$(SolutionDir)\**\obj\TestResults\*\coverage.opencover.xml"/>
+    </ItemGroup>
+    <ReportGenerator ReportFiles="@(CoverageFile)" TargetDirectory="$(TestReportDirectory)" ReportTypes="Html;Cobertura"/>
+  </Target>
+  <Target Name="_Clean" DependsOnTargets="_Restore">
+    <RemoveDir Directories="$(MSBuildProjectDirectory)\bin;$(MSBuildProjectDirectory)\obj" ContinueOnError="true"/>
+    <MSBuild Projects="$(SolutionFile)" Targets="clean" Properties="Configuration=$(Configuration);CleanBinObj=true;NoRestore=true" BuildInParallel="true" ContinueOnError="true"/>
+  </Target>
+  <Target Name="_Restore">
+    <MSBuild Projects="$(SolutionFile)" Targets="restore" Properties="Configuration=$(Configuration)" BuildInParallel="true"/>
+  </Target>
+</Project>

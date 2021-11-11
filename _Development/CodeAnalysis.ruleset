@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="All" Description="All" ToolsVersion="10.0">
+  <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
+    <Rule Id="SA1101" Action="None" /> <!-- PrefixLocalCallsWithThis -->
+    <Rule Id="SA1118" Action="None" /> <!-- ParameterMustNotSpanMultipleLines -->
+    <Rule Id="SA1124" Action="None" /> <!-- DoNotUseRegions -->
+    <Rule Id="SA1309" Action="None" /> <!-- FieldNamesMustNotBeginWithUnderscore -->
+    <Rule Id="SA1400" Action="None" /> <!-- AccessModifierMustBeDeclared -->
+    <Rule Id="SA1413" Action="None" /> <!-- UseTrailingCommasInMultiLineInitializers -->
+    <Rule Id="SA1513" Action="None" /> <!-- ClosingBraceMustBeFollowedByBlankLine -->
+    <Rule Id="SA1600" Action="None" /> <!-- ElementsMustBeDocumented -->
+    <Rule Id="SA1602" Action="None" /> <!-- EnumerationItemsMustBeDocumented -->
+    <Rule Id="SA1633" Action="None" /> <!-- FileMustHaveHeader -->
+  </Rules>
+  <Rules AnalyzerId="Microsoft.CodeAnalysis.FxCopAnalyzers" RuleNamespace="Microsoft.CodeAnalysis.FxCopAnalyzers">
+    <Rule Id="CA1014" Action="None" /> <!-- Mark assemblies with CLSCompliantAttribute -->
+    <Rule Id="CA1031" Action="None" /> <!-- DoNotCatchGeneralExceptionTypes -->
+    <Rule Id="CA1032" Action="None" /> <!-- ImplementStandardExceptionConstructors -->
+    <Rule Id="CA1036" Action="None" /> <!-- OverrideMethodsOnComparableTypes -->
+    <Rule Id="CA1040" Action="None" /> <!-- AvoidEmptyInterfaces -->
+    <Rule Id="CA1062" Action="None" /> <!-- ValidateArgumentsOfPublicMethods -->
+    <Rule Id="CA1308" Action="None" /> <!-- NormalizeStringsToUppercase -->
+    <Rule Id="CA1711" Action="None" /> <!-- Identifiers should not have incorrect suffix -->
+    <Rule Id="CA1716" Action="None" /> <!-- IdentifiersShouldNotMatchKeywords -->
+    <Rule Id="CA1724" Action="None" /> <!-- TypeNamesShouldNotMatchNamespaces -->
+    <Rule Id="CA1812" Action="None" /> <!-- AvoidUninstantiatedInternalClasses -->
+    <Rule Id="CA1822" Action="None" /> <!-- MarkMembersAsStatic -->
+    <Rule Id="CA2007" Action="None" /> <!-- DoNotDirectlyAwaitATaskAnalyzer -->
+    <Rule Id="CA2225" Action="None" /> <!-- OperatorOverloadsHaveNamedAlternates -->
+    <Rule Id="CA2229" Action="None" /> <!-- ImplementSerializationConstructors -->
+  </Rules>
+  <Rules AnalyzerId="SonarAnalyzer.CSharp" RuleNamespace="SonarAnalyzer.CSharp">
+    <Rule Id="S1121" Action="None" /> <!-- Assignments should not be made from within sub-expressions. (seems to be C# 9 non-conforming) -->
+    <Rule Id="S1199" Action="None" /> <!-- Extract this nested code block into a separate method. -->
+    <Rule Id="S3358" Action="None" /> <!-- Extract this nested ternary operation into an independent statement. -->
+    <Rule Id="S3453" Action="None" /> <!-- This class can't be instantiated; make its constructor 'public'. -->
+    <Rule Id="S3459" Action="None" /> <!-- Remove unassigned auto-property, or set its value. -->
+    <Rule Id="S3925" Action="None" /> <!-- Update this implementation of 'ISerializable' to conform to the recommended serialization pattern. -->
+  </Rules>
+  <Rules AnalyzerId="Microsoft.CodeAnalysis.Analyzers" RuleNamespace="MicrosoftCodeAnalysisReleaseTracking">
+    <Rule Id="RS2008" Action="None" /> <!-- Enable analyzer release tracking for the analyzer project containing rule 'x' -->
+  </Rules>
+</RuleSet>

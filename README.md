@@ -6,3 +6,4 @@ This repository contains an implementation of a number of Roslyn analyzer rules 
 
 [Rule DC1001: Using namespace statements must not reference disallowed namespaces](./Documentation/DC1001.md)
 
+[Rule DC1002: Code must not contain namespace cycles](./Documentation/DC1002.md)
