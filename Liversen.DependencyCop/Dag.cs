@@ -8,7 +8,7 @@ namespace Liversen.DependencyCop
     /// <summary>
     /// Directed acyclic graph.
     /// </summary>
-    public class Dag
+    class Dag
     {
         readonly Dictionary<string, Dependencies> _nodes = new Dictionary<string, Dependencies>();
 

@@ -1,1 +1,1 @@
-﻿[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Liversen.DependencyCop.Analyzers.Tests")]
+﻿[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Liversen.DependencyCop.Tests")]
