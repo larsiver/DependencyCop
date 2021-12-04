@@ -13,7 +13,7 @@ namespace Liversen.DependencyCop
         const string Dc1001NamespacePrefixKey = "dotnet_diagnostic.DC1001.namespace_prefix";
         readonly DiagnosticDescriptor descriptor1001 = new DiagnosticDescriptor(
             "DC1001",
-            "Do not use various names in using statements",
+            "Using namespace statements must not reference disallowed namespaces",
             "Do not use '{0}' in a using statement, use fully-qualified names",
             "DC.Readability",
             DiagnosticSeverity.Warning,

@@ -12,7 +12,7 @@ namespace Liversen.DependencyCop
     {
         static readonly DiagnosticDescriptor Descriptor1003 = new DiagnosticDescriptor(
             "DC1003",
-            "Do not have namespace cycles",
+            "Code must not contain namespace cycles",
             "Break up namespace cycle '{0}'",
             "DC.Design",
             DiagnosticSeverity.Warning,

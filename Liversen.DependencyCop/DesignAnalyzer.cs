@@ -11,7 +11,7 @@ namespace Liversen.DependencyCop
     {
         readonly DiagnosticDescriptor descriptor1002 = new DiagnosticDescriptor(
             "DC1002",
-            "Do not use types in descendant namespaces",
+            "Code must not refer code in descendant namespaces",
             "Do not use type '{0}' from descendant namespace '{1}'",
             "DC.Design",
             DiagnosticSeverity.Warning,
