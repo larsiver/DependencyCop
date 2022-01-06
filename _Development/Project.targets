@@ -13,10 +13,11 @@
     <IsPublishable Condition="'$(IsPublishable)' == ''">false</IsPublishable>
     <MajorVersion>1</MajorVersion>
     <MinorVersion>0</MinorVersion>
+    <PatchVersion>0</PatchVersion>
     <BuildNumber Condition="'$(BuildNumber)' == ''">0</BuildNumber>
-    <Version>$(MajorVersion).$(MinorVersion).0.0</Version>
-    <FileVersion>$(MajorVersion).$(MinorVersion).0.$(BuildNumber)</FileVersion>
-    <PackageVersion>$(MajorVersion).$(MinorVersion).$(BuildNumber)</PackageVersion>
+    <Version>$(MajorVersion).$(MinorVersion).$(PatchVersion).0</Version>
+    <FileVersion>$(MajorVersion).$(MinorVersion).$(PatchVersion).$(BuildNumber)</FileVersion>
+    <PackageVersion>$(MajorVersion).$(MinorVersion).$(PatchVersion)</PackageVersion>
   </PropertyGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)\stylecop.json" />
