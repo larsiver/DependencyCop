@@ -14,7 +14,7 @@ namespace Liversen.DependencyCop
         readonly DiagnosticDescriptor descriptor1001 = new DiagnosticDescriptor(
             "DC1001",
             "Using namespace statements must not reference disallowed namespaces",
-            "Do not use '{0}' in a using statement, use fully-qualified names ",
+            "Do not use '{0}' in a using statement, use fully-qualified names",
             "DC.Readability",
             DiagnosticSeverity.Warning,
             true);
