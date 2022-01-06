@@ -17,8 +17,8 @@ jobs:
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
       - name: Restore
-        run: dotnet restore _Development\Solution.proj
+        run: dotnet restore _Development/Solution.proj
       - name: Build
-        run: dotnet msbuild _Development\Solution.proj /t:_Build /p:Configuration=Release
+        run: dotnet msbuild _Development/Solution.proj /t:_Build /p:Configuration=Release
       - name: Test
-        run: dotnet msbuild _Development\Solution.proj /t:_Test /p:Configuration=Release
+        run: dotnet msbuild _Development/Solution.proj /t:_Test /p:Configuration=Release
