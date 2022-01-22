@@ -17,7 +17,8 @@ namespace Liversen.DependencyCop
             "Do not use '{0}' in a using statement, use fully-qualified names",
             "DC.Readability",
             DiagnosticSeverity.Warning,
-            true);
+            true,
+            helpLinkUri: "https://github.com/larsiver/DependencyCop/blob/main/Documentation/DC1001.md");
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(descriptor1001);
 

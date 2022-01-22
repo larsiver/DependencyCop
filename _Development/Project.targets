@@ -11,13 +11,6 @@
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
     <NoWarn>$(NoWarn);1591</NoWarn>
     <IsPublishable Condition="'$(IsPublishable)' == ''">false</IsPublishable>
-    <MajorVersion>0</MajorVersion>
-    <MinorVersion>1</MinorVersion>
-    <PatchVersion>0</PatchVersion>
-    <BuildNumber Condition="'$(BuildNumber)' == ''">0</BuildNumber>
-    <Version>$(MajorVersion).$(MinorVersion).$(PatchVersion).0</Version>
-    <FileVersion>$(MajorVersion).$(MinorVersion).$(PatchVersion).$(BuildNumber)</FileVersion>
-    <PackageVersion>$(MajorVersion).$(MinorVersion).$(PatchVersion)</PackageVersion>
   </PropertyGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)\stylecop.json" />

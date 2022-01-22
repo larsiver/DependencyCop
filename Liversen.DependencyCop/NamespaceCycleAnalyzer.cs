@@ -16,7 +16,8 @@ namespace Liversen.DependencyCop
             "Break up namespace cycle '{0}'",
             "DC.Design",
             DiagnosticSeverity.Warning,
-            true);
+            true,
+            helpLinkUri: "https://github.com/larsiver/DependencyCop/blob/main/Documentation/DC1003.md");
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Descriptor1003);
 

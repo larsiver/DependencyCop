@@ -15,7 +15,8 @@ namespace Liversen.DependencyCop
             "Do not use type '{0}' from descendant namespace '{1}'",
             "DC.Design",
             DiagnosticSeverity.Warning,
-            true);
+            true,
+            helpLinkUri: "https://github.com/larsiver/DependencyCop/blob/main/Documentation/DC1002.md");
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(descriptor1002);
 
