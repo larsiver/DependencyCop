@@ -13,13 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{A22B6B0B-91A8-4699-8D26-06348120280F}"
-	ProjectSection(SolutionItems) = preProject
-		Documentation\DC1000.md = Documentation\DC1000.md
-		Documentation\DC1001.md = Documentation\DC1001.md
-		Documentation\DC1002.md = Documentation\DC1002.md
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

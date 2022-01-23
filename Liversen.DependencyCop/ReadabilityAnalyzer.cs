@@ -18,7 +18,7 @@ namespace Liversen.DependencyCop
             "DC.Readability",
             DiagnosticSeverity.Warning,
             true,
-            helpLinkUri: "https://github.com/larsiver/DependencyCop/blob/main/Documentation/DC1001.md");
+            helpLinkUri: "https://github.com/larsiver/DependencyCop/blob/main/Liversen.DependencyCop/Documentation/DC1001.md");
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(descriptor1001);
 
