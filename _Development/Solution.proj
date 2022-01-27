@@ -3,10 +3,9 @@
     <TargetFramework>net5.0</TargetFramework>
     <SolutionFile>$(MSBuildProjectDirectory)\..\Liversen.DependencyCop.sln</SolutionFile>
     <SolutionDir>$(MSBuildProjectDirectory)\..</SolutionDir>
-    <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="ReportGenerator" Version="4.8.12"/>
+    <PackageReference Include="ReportGenerator" Version="5.0.3"/>
   </ItemGroup>
   <Target Name="_Build" DependsOnTargets="_Restore">
     <PropertyGroup>
