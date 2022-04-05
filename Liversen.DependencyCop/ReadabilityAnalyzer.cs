@@ -33,9 +33,9 @@ namespace Liversen.DependencyCop
         void CompilationStart(CompilationStartAnalysisContext startContext)
         {
             var optionsProvider = startContext.Options.AnalyzerConfigOptionsProvider;
-            optionsProvider.GlobalOptions.TryGetValue(Dc1001NamespacePrefixesKey, out var dc1001namespacePrefix);
-            var disallowedNamespacePrefixes = (dc1001namespacePrefix?.Trim() ?? string.Empty)
-                .Split(';')
+            optionsProvider.GlobalOptions.TryGetValue(Dc1001NamespacePrefixesKey, out var dc1001namespacePrefixes);
+            var disallowedNamespacePrefixes = (dc1001namespacePrefixes?.Trim() ?? string.Empty)
+                .Split(',')
                 .Select(s => s.Trim())
                 .Where(x => !string.IsNullOrWhiteSpace(x))
                 .ToImmutableArray();

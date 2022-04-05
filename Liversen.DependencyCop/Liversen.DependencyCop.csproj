@@ -7,7 +7,7 @@
     <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
     <MajorVersion>0</MajorVersion>
     <MinorVersion>1</MinorVersion>
-    <PatchVersion>3</PatchVersion>
+    <PatchVersion>5</PatchVersion>
     <BuildNumber Condition="'$(BuildNumber)' == ''">0</BuildNumber>
     <Version>$(MajorVersion).$(MinorVersion).$(PatchVersion).0</Version>
     <FileVersion>$(MajorVersion).$(MinorVersion).$(PatchVersion).$(BuildNumber)</FileVersion>
