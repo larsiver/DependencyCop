@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Immutable;
+using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -10,7 +11,7 @@ namespace Liversen.DependencyCop
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class ReadabilityAnalyzer : DiagnosticAnalyzer
     {
-        const string Dc1001NamespacePrefixKey = "dotnet_diagnostic.DC1001.namespace_prefix";
+        const string Dc1001NamespacePrefixesKey = "dotnet_diagnostic.DC1001.namespace_prefixes";
         readonly DiagnosticDescriptor descriptor1001 = new DiagnosticDescriptor(
             "DC1001",
             "Using namespace statements must not reference disallowed namespaces",
@@ -32,22 +33,26 @@ namespace Liversen.DependencyCop
         void CompilationStart(CompilationStartAnalysisContext startContext)
         {
             var optionsProvider = startContext.Options.AnalyzerConfigOptionsProvider;
-            optionsProvider.GlobalOptions.TryGetValue(Dc1001NamespacePrefixKey, out var dc1001namespacePrefix);
-            startContext.RegisterSyntaxNodeAction(c => AnalyseUsingStatement(c, dc1001namespacePrefix?.Trim()), SyntaxKind.UsingDirective);
+            optionsProvider.GlobalOptions.TryGetValue(Dc1001NamespacePrefixesKey, out var dc1001namespacePrefix);
+            var disallowedNamespacePrefixes = (dc1001namespacePrefix?.Trim() ?? string.Empty)
+                .Split(';')
+                .Select(s => s.Trim())
+                .Where(x => !string.IsNullOrWhiteSpace(x))
+                .ToImmutableArray();
+            startContext.RegisterSyntaxNodeAction(c => AnalyseUsingStatement(c, disallowedNamespacePrefixes), SyntaxKind.UsingDirective);
         }
 
-        void AnalyseUsingStatement(SyntaxNodeAnalysisContext context, string namespacePrefix)
+        void AnalyseUsingStatement(SyntaxNodeAnalysisContext context, ImmutableArray<string> disallowedNamespacePrefixes)
         {
             if (context.Node is UsingDirectiveSyntax node && string.IsNullOrEmpty(node.StaticKeyword.Text))
             {
-                if (string.IsNullOrWhiteSpace(namespacePrefix))
-                {
-                    throw new ArgumentException($"Rule {descriptor1001.Id} requires setting property {Dc1001NamespacePrefixKey} to a non-empty value in a global analyzer file, see https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/configuration-files.");
-                }
                 var name = node.Name.ToFullString();
-                if (name == namespacePrefix || name.StartsWith($"{namespacePrefix}.", StringComparison.Ordinal))
+                foreach (var disallowedNamespacePrefix in disallowedNamespacePrefixes)
                 {
-                    context.ReportDiagnostic(Diagnostic.Create(descriptor1001, node.GetLocation(), name));
+                    if (name == disallowedNamespacePrefix || name.StartsWith($"{disallowedNamespacePrefix}.", StringComparison.Ordinal))
+                    {
+                        context.ReportDiagnostic(Diagnostic.Create(descriptor1001, node.GetLocation(), name));
+                    }
                 }
             }
         }
