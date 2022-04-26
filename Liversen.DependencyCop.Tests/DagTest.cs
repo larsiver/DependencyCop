@@ -75,7 +75,7 @@ namespace Liversen.DependencyCop
         }
 
         [Fact]
-        static void Given_When_Then4()
+        static void GivenThreeConnectedVerticesAddedInDisconnectedOrder_WhentryAddingCircle_ThenCircle()
         {
             var sut = new Dag();
             sut.AddVertex("A", "B");
