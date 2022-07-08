@@ -7,9 +7,9 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace Liversen.DependencyCop
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class DesignAnalyzer : DiagnosticAnalyzer
+    public class DescendantNamespaceAccessAnalyzer : DiagnosticAnalyzer
     {
-        readonly DiagnosticDescriptor descriptor1002 = new DiagnosticDescriptor(
+        static readonly DiagnosticDescriptor Descriptor = new DiagnosticDescriptor(
             "DC1002",
             "Code must not refer code in descendant namespaces",
             "Do not use type '{0}' from descendant namespace '{1}'",
@@ -18,7 +18,7 @@ namespace Liversen.DependencyCop
             true,
             helpLinkUri: "https://github.com/larsiver/DependencyCop/blob/main/Liversen.DependencyCop/Documentation/DC1002.md");
 
-        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(descriptor1002);
+        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Descriptor);
 
         public override void Initialize(AnalysisContext context)
         {
@@ -37,7 +37,7 @@ namespace Liversen.DependencyCop
                 var enclosingNamespace = enclosingType.NamespaceFullName();
                 if (typeNamespace != null && enclosingNamespace != null && typeNamespace.StartsWith($"{enclosingNamespace}.", StringComparison.Ordinal))
                 {
-                    context.ReportDiagnostic(Diagnostic.Create(descriptor1002, context.Node.GetLocation(), type.Name, typeNamespace));
+                    context.ReportDiagnostic(Diagnostic.Create(Descriptor, context.Node.GetLocation(), type.Name, typeNamespace));
                 }
             }
         }

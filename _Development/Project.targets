@@ -14,22 +14,25 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)\stylecop.json" />
-    <AdditionalFiles Include="$(MSBuildThisFileDirectory)\stylecop.json" Link="stylecop.json"/>
-    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.376">
+    <AdditionalFiles Include="$(MSBuildThisFileDirectory)\stylecop.json" Link="stylecop.json" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.435">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.34.0.42011">
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.41.0.50478">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
   <Target Name="CleanAll" AfterTargets="AfterClean">
-    <RemoveDir Condition="'$(CleanBinObj)' == 'true'" Directories="$(BaseIntermediateOutputPath);$(BaseOutputPath)"/>
+    <RemoveDir Condition="'$(CleanBinObj)' == 'true'" Directories="$(BaseIntermediateOutputPath);$(BaseOutputPath)" />
   </Target>
   <Target Name="PublishArtifacts">
-    <ZipDirectory Condition="'$(IsPublishable)' == 'true'" SourceDirectory="$(PublishDir)" DestinationFile="$(ArtifactDirectory)\$(TargetName).zip" Overwrite="true"/>
-    <Copy Condition="'$(GeneratePackageOnBuild)'" SourceFiles="$(PackageOutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(ArtifactDirectory)"/>
+    <ZipDirectory Condition="'$(IsPublishable)' == 'true'" SourceDirectory="$(PublishDir)"
+                  DestinationFile="$(ArtifactDirectory)\$(TargetName).zip" Overwrite="true" />
+    <Copy Condition="'$(GeneratePackageOnBuild)'"
+          SourceFiles="$(PackageOutputPath)\$(PackageId).$(PackageVersion).nupkg"
+          DestinationFolder="$(ArtifactDirectory)" />
   </Target>
 </Project>

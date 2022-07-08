@@ -9,10 +9,12 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace Liversen.DependencyCop
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class ReadabilityAnalyzer : DiagnosticAnalyzer
+    public class UsingNamespaceStatementAnalyzer : DiagnosticAnalyzer
     {
-        const string Dc1001NamespacePrefixesKey = "dotnet_diagnostic.DC1001.namespace_prefixes";
-        readonly DiagnosticDescriptor descriptor1001 = new DiagnosticDescriptor(
+        const string DotnetDiagnosticOptionName = "dotnet_diagnostic.DC1001_NamespacePrefixes";
+        const string BuildPropertyOptionName = "build_property.DC1001_NamespacePrefixes";
+
+        static readonly DiagnosticDescriptor Descriptor = new DiagnosticDescriptor(
             "DC1001",
             "Using namespace statements must not reference disallowed namespaces",
             "Do not use '{0}' in a using statement, use fully-qualified names",
@@ -21,7 +23,16 @@ namespace Liversen.DependencyCop
             true,
             helpLinkUri: "https://github.com/larsiver/DependencyCop/blob/main/Liversen.DependencyCop/Documentation/DC1001.md");
 
-        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(descriptor1001);
+        static readonly DiagnosticDescriptor Descriptor2 = new DiagnosticDescriptor(
+            "DC1004",
+            "Rule DC1001 is not configured",
+            "Rule DC1001 is not configured",
+            "DC.Readability",
+            DiagnosticSeverity.Warning,
+            true,
+            helpLinkUri: "https://github.com/larsiver/DependencyCop/blob/main/Liversen.DependencyCop/Documentation/DC1004.md");
+
+        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Descriptor, Descriptor2);
 
         public override void Initialize(AnalysisContext context)
         {
@@ -30,16 +41,33 @@ namespace Liversen.DependencyCop
             context.RegisterCompilationStartAction(CompilationStart);
         }
 
+        static string GetDisallowedNamespacePrefixesValue(AnalyzerOptions options)
+        {
+            var optionsProvider = options.AnalyzerConfigOptionsProvider;
+            if (optionsProvider.GlobalOptions.TryGetValue(DotnetDiagnosticOptionName, out var value1))
+            {
+                return value1;
+            }
+            if (optionsProvider.GlobalOptions.TryGetValue(BuildPropertyOptionName, out var value2))
+            {
+                return value2;
+            }
+            return null;
+        }
+
         void CompilationStart(CompilationStartAnalysisContext startContext)
         {
-            var optionsProvider = startContext.Options.AnalyzerConfigOptionsProvider;
-            optionsProvider.GlobalOptions.TryGetValue(Dc1001NamespacePrefixesKey, out var dc1001namespacePrefixes);
-            var disallowedNamespacePrefixes = (dc1001namespacePrefixes?.Trim() ?? string.Empty)
+            var disallowedNamespacePrefixesValue = GetDisallowedNamespacePrefixesValue(startContext.Options);
+            var disallowedNamespacePrefixes = (disallowedNamespacePrefixesValue?.Trim() ?? string.Empty)
                 .Split(',')
                 .Select(s => s.Trim())
                 .Where(x => !string.IsNullOrWhiteSpace(x))
                 .ToImmutableArray();
             startContext.RegisterSyntaxNodeAction(c => AnalyseUsingStatement(c, disallowedNamespacePrefixes), SyntaxKind.UsingDirective);
+            if (disallowedNamespacePrefixesValue == null)
+            {
+                startContext.RegisterCompilationEndAction(c => c.ReportDiagnostic(Diagnostic.Create(Descriptor2, null)));
+            }
         }
 
         void AnalyseUsingStatement(SyntaxNodeAnalysisContext context, ImmutableArray<string> disallowedNamespacePrefixes)
@@ -51,7 +79,7 @@ namespace Liversen.DependencyCop
                 {
                     if (name == disallowedNamespacePrefix || name.StartsWith($"{disallowedNamespacePrefix}.", StringComparison.Ordinal))
                     {
-                        context.ReportDiagnostic(Diagnostic.Create(descriptor1001, node.GetLocation(), name));
+                        context.ReportDiagnostic(Diagnostic.Create(Descriptor, node.GetLocation(), name));
                     }
                 }
             }

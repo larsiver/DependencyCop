@@ -10,7 +10,7 @@ namespace Liversen.DependencyCop
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class NamespaceCycleAnalyzer : DiagnosticAnalyzer
     {
-        static readonly DiagnosticDescriptor Descriptor1003 = new DiagnosticDescriptor(
+        static readonly DiagnosticDescriptor Descriptor = new DiagnosticDescriptor(
             "DC1003",
             "Code must not contain namespace cycles",
             "Break up namespace cycle '{0}'",
@@ -19,7 +19,7 @@ namespace Liversen.DependencyCop
             true,
             helpLinkUri: "https://github.com/larsiver/DependencyCop/blob/main/Liversen.DependencyCop/Documentation/DC1003.md");
 
-        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Descriptor1003);
+        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Descriptor);
 
         public static (string SourceNamespaceReduced, string TargetNamespaceReduced) GetReducedNamespaces(string sourceNamespace, string targetNamespace)
         {
@@ -64,7 +64,7 @@ namespace Liversen.DependencyCop
                         var cycle = _dag.TryAddVertex(sourceNamespaceReduced, targetNamespaceReduced);
                         if (cycle != null)
                         {
-                            context.ReportDiagnostic(Diagnostic.Create(Descriptor1003, context.Node.GetLocation(), string.Join("->", cycle)));
+                            context.ReportDiagnostic(Diagnostic.Create(Descriptor, context.Node.GetLocation(), string.Join("->", cycle)));
                         }
                     }
                 }
