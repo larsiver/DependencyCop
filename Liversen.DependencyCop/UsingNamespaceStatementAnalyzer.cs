@@ -26,7 +26,7 @@ namespace Liversen.DependencyCop
         static readonly DiagnosticDescriptor Descriptor2 = new DiagnosticDescriptor(
             "DC1004",
             "Rule DC1001 is not configured",
-            "Rule DC1001 is not configured",
+            "A list of disallowed namespaces must be configured for rule DC1001",
             "DC.Readability",
             DiagnosticSeverity.Warning,
             true,
@@ -48,10 +48,12 @@ namespace Liversen.DependencyCop
             {
                 return value1;
             }
+
             if (optionsProvider.GlobalOptions.TryGetValue(BuildPropertyOptionName, out var value2))
             {
                 return value2;
             }
+
             return null;
         }
 
