@@ -29,7 +29,7 @@ namespace Liversen.DependencyCop
                 .ShouldBe((string.Empty, string.Empty));
 
         [Fact]
-        async Task GivenCodeWithCycle_WhenAnalyzing_ThenDc1003Diagnostics()
+        async Task GivenCodeWithCycle_WhenAnalyzing_ThenDiagnostics()
         {
             var code = EmbeddedResourceHelpers.Get(Assembly.GetExecutingAssembly(), $"{GetType().FullName}Code.cs");
             var expected = Verify.Diagnostic()

@@ -8,7 +8,7 @@ namespace Liversen.DependencyCop
     public class DescendantNamespaceAccessAnalyzerTest
     {
         [Fact]
-        async Task GivenCodeReferringCodeInDescendantNamespace_WhenAnalyzing_ThenDc1002Diagnostics()
+        async Task GivenCodeReferringCodeInDescendantNamespace_WhenAnalyzing_ThenDiagnostics()
         {
             var code = EmbeddedResourceHelpers.Get(Assembly.GetExecutingAssembly(), $"{GetType().FullName}Code.cs");
             var expected = Verify.Diagnostic()

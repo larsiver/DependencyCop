@@ -29,10 +29,7 @@
     <RemoveDir Condition="'$(CleanBinObj)' == 'true'" Directories="$(BaseIntermediateOutputPath);$(BaseOutputPath)" />
   </Target>
   <Target Name="PublishArtifacts">
-    <ZipDirectory Condition="'$(IsPublishable)' == 'true'" SourceDirectory="$(PublishDir)"
-                  DestinationFile="$(ArtifactDirectory)\$(TargetName).zip" Overwrite="true" />
-    <Copy Condition="'$(GeneratePackageOnBuild)'"
-          SourceFiles="$(PackageOutputPath)\$(PackageId).$(PackageVersion).nupkg"
-          DestinationFolder="$(ArtifactDirectory)" />
+    <ZipDirectory Condition="'$(IsPublishable)' == 'true'" SourceDirectory="$(PublishDir)" DestinationFile="$(ArtifactDirectory)\$(TargetName).zip" Overwrite="true" />
+    <Copy Condition="'$(GeneratePackageOnBuild)'" SourceFiles="$(PackageOutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(ArtifactDirectory)" />
   </Target>
 </Project>

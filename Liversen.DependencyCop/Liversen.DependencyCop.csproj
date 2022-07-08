@@ -7,13 +7,14 @@
     <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
     <MajorVersion>0</MajorVersion>
     <MinorVersion>1</MinorVersion>
-    <PatchVersion>6</PatchVersion>
+    <PatchVersion>7</PatchVersion>
     <BuildNumber Condition="'$(BuildNumber)' == ''">0</BuildNumber>
     <Version>$(MajorVersion).$(MinorVersion).$(PatchVersion).0</Version>
     <FileVersion>$(MajorVersion).$(MinorVersion).$(PatchVersion).$(BuildNumber)</FileVersion>
     <Authors>Lars Iversen</Authors>
     <Copyright>Copyright $([System.DateTime]::UtcNow.ToString(yyyy)) (c) Lars Iversen. All rights reserved.</Copyright>
     <Description>Roslyn analyzers that enforce restrictions on dependencies between namespaces.</Description>
+    <PackageIcon>Icon.png</PackageIcon>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>Roslyn;Analyzers;CodeAnalysis</PackageTags>
     <PackageProjectUrl>https://github.com/larsiver/DependencyCop</PackageProjectUrl>
@@ -35,6 +36,9 @@
       <Pack>true</Pack>
       <PackagePath>\</PackagePath>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Documentation\Icon.png" Pack="true" PackagePath="" />
   </ItemGroup>
   <Import Project="..\_Development\Project.targets" />
 </Project>
