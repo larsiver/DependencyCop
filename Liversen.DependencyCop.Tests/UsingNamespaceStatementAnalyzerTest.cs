@@ -44,7 +44,7 @@ namespace Liversen.DependencyCop
         {
             var code = EmbeddedResourceHelpers.Get(Assembly.GetExecutingAssembly(), $"{GetType().FullName}Code.cs");
             var expected = new DiagnosticResult("DC1004", DiagnosticSeverity.Warning)
-                .WithMessage("Rule DC1001 is not configured");
+                .WithMessage("A list of disallowed namespaces must be configured for rule DC1001");
             var test = new CSharpAnalyzerTest<UsingNamespaceStatementAnalyzer, XUnitVerifier>
             {
                 TestState =
