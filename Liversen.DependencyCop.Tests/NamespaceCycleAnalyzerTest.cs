@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using System.Threading.Tasks;
 using Shouldly;
 using Xunit;
@@ -28,15 +29,26 @@ namespace Liversen.DependencyCop
             NamespaceCycleAnalyzer.GetReducedNamespaces("DC.Foo.Bar", "DC.Foo")
                 .ShouldBe((string.Empty, string.Empty));
 
+        // It is non-deterministic which of two different diagnostics is returned.
         [Fact]
         async Task GivenCodeWithCycle_WhenAnalyzing_ThenDiagnostics()
         {
             var code = EmbeddedResourceHelpers.Get(Assembly.GetExecutingAssembly(), $"{GetType().FullName}Code.cs");
-            var expected = Verify.Diagnostic()
+            var expected1 = Verify.Diagnostic()
                 .WithLocation(14, 28)
                 .WithMessage("Break up namespace cycle 'NamespaceCycleAnalyzer.Transaction->NamespaceCycleAnalyzer.Account->NamespaceCycleAnalyzer.Transaction'");
+            var expected2 = Verify.Diagnostic()
+                .WithLocation(22, 24)
+                .WithMessage("Break up namespace cycle 'NamespaceCycleAnalyzer.Account->NamespaceCycleAnalyzer.Transaction->NamespaceCycleAnalyzer.Account'");
 
-            await Verify.VerifyAnalyzerAsync(code, expected);
+            try
+            {
+                await Verify.VerifyAnalyzerAsync(code, expected1);
+            }
+            catch (Exception)
+            {
+                await Verify.VerifyAnalyzerAsync(code, expected2);
+            }
         }
     }
 }
