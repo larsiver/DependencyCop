@@ -40,5 +40,4 @@
   <ItemGroup>
     <None Include="Documentation\Icon.png" Pack="true" PackagePath="" />
   </ItemGroup>
-  <Import Project="..\_Development\Project.targets" />
 </Project>

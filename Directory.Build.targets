@@ -1,0 +1,4 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="_Development\Project.targets"/>
+  <Import Condition="'$(IsTestProject)' == 'true'" Project="_Development\TestProject.targets"/>
+</Project>
