@@ -33,7 +33,7 @@ namespace Liversen.DependencyCop
         [Fact]
         async Task GivenCodeWithCycle_WhenAnalyzing_ThenDiagnostics()
         {
-            var code = EmbeddedResourceHelpers.Get(Assembly.GetExecutingAssembly(), $"{GetType().FullName}Code.cs");
+            var code = EmbeddedResourceHelpers.Get($"{GetType().FullName}Code.cs");
             var expected1 = Verify.Diagnostic()
                 .WithLocation(14, 28)
                 .WithMessage("Break up namespace cycle 'NamespaceCycleAnalyzer.Transaction->NamespaceCycleAnalyzer.Account->NamespaceCycleAnalyzer.Transaction'");
