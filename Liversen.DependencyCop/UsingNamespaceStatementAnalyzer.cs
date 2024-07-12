@@ -75,7 +75,7 @@ namespace Liversen.DependencyCop
 
         void AnalyseUsingStatement(SyntaxNodeAnalysisContext context, ImmutableArray<string> disallowedNamespacePrefixes)
         {
-            if (context.Node is UsingDirectiveSyntax node && string.IsNullOrEmpty(node.StaticKeyword.Text))
+            if (context.Node is UsingDirectiveSyntax node && string.IsNullOrEmpty(node.StaticKeyword.Text) && node.Name != null)
             {
                 var name = node.Name.ToFullString();
                 foreach (var disallowedNamespacePrefix in disallowedNamespacePrefixes)

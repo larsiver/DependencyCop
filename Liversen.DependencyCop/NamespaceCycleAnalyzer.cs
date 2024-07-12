@@ -48,7 +48,7 @@ namespace Liversen.DependencyCop
 
         class Inner
         {
-            readonly Dag _dag = new Dag();
+            readonly Dag dag = new Dag();
 
             public void Analyse(SyntaxNodeAnalysisContext context)
             {
@@ -61,7 +61,7 @@ namespace Liversen.DependencyCop
                     if (sourceNamespace != null && targetNamespace != null && sourceNamespace != targetNamespace)
                     {
                         var (sourceNamespaceReduced, targetNamespaceReduced) = GetReducedNamespaces(sourceNamespace, targetNamespace);
-                        var cycle = _dag.TryAddVertex(sourceNamespaceReduced, targetNamespaceReduced);
+                        var cycle = dag.TryAddVertex(sourceNamespaceReduced, targetNamespaceReduced);
                         if (cycle != null)
                         {
                             context.ReportDiagnostic(Diagnostic.Create(Descriptor, context.Node.GetLocation(), string.Join("->", cycle)));
