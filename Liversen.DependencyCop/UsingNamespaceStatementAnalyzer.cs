@@ -30,7 +30,8 @@ namespace Liversen.DependencyCop
             "DC.Readability",
             DiagnosticSeverity.Warning,
             true,
-            helpLinkUri: "https://github.com/larsiver/DependencyCop/blob/main/Liversen.DependencyCop/Documentation/DC1004.md");
+            helpLinkUri: "https://github.com/larsiver/DependencyCop/blob/main/Liversen.DependencyCop/Documentation/DC1004.md",
+            customTags: WellKnownDiagnosticTags.CompilationEnd);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Descriptor, Descriptor2);
 
@@ -74,7 +75,7 @@ namespace Liversen.DependencyCop
 
         void AnalyseUsingStatement(SyntaxNodeAnalysisContext context, ImmutableArray<string> disallowedNamespacePrefixes)
         {
-            if (context.Node is UsingDirectiveSyntax node && string.IsNullOrEmpty(node.StaticKeyword.Text))
+            if (context.Node is UsingDirectiveSyntax node && string.IsNullOrEmpty(node.StaticKeyword.Text) && node.Name != null)
             {
                 var name = node.Name.ToFullString();
                 foreach (var disallowedNamespacePrefix in disallowedNamespacePrefixes)

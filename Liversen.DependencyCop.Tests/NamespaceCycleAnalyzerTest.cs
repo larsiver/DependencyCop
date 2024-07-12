@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Reflection;
 using System.Threading.Tasks;
 using Shouldly;
 using Xunit;
-using Verify = Microsoft.CodeAnalysis.CSharp.Testing.XUnit.AnalyzerVerifier<Liversen.DependencyCop.NamespaceCycleAnalyzer>;
+using Verify = Microsoft.CodeAnalysis.CSharp.Testing.CSharpAnalyzerVerifier<Liversen.DependencyCop.NamespaceCycleAnalyzer, Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
 
 namespace Liversen.DependencyCop
 {
