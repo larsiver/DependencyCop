@@ -18,12 +18,7 @@ namespace Liversen.DependencyCop
             return reader.ReadToEnd();
         }
 
-        /// <summary>
-        /// Get the resource from the currently executing assembly that called this method.
-        /// </summary>
-        /// <param name="resourceName">Usually just the class name that should be tested.</param>
-        /// <returns>The content of the resource as text.</returns>
-        public static string Get(string resourceName)
+        public static string GetFromCallingAssembly(string resourceName)
         {
             return Get(Assembly.GetCallingAssembly(), resourceName);
         }
