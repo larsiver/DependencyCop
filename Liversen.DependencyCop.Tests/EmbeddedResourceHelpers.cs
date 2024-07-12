@@ -17,5 +17,10 @@ namespace Liversen.DependencyCop
             using var reader = new StreamReader(stream);
             return reader.ReadToEnd();
         }
+
+        public static string GetFromCallingAssembly(string resourceName)
+        {
+            return Get(Assembly.GetCallingAssembly(), resourceName);
+        }
     }
 }

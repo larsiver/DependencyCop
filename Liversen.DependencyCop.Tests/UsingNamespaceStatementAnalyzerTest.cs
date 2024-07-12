@@ -22,7 +22,7 @@ namespace Liversen.DependencyCop
         [InlineData("build_property")]
         async Task GivenCodeUsingDisallowedNamespacesConfiguredInGlobalConfig_WhenAnalyzing_ThenDiagnostics(string globalConfigPropertyNamePrefix)
         {
-            var code = EmbeddedResourceHelpers.Get(Assembly.GetExecutingAssembly(), $"{GetType().FullName}Code.cs");
+            var code = EmbeddedResourceHelpers.GetFromCallingAssembly($"{GetType().FullName}Code.cs");
             var expected = new DiagnosticResult("DC1001", DiagnosticSeverity.Warning)
                 .WithLocation(1, 1)
                 .WithMessage("Do not use 'UsingNamespaceStatementAnalyzer.Account' in a using statement, use fully-qualified names");
@@ -42,7 +42,7 @@ namespace Liversen.DependencyCop
         [Fact]
         async Task GivenCodeWithGlobalConfigWithoutDisallowedNamespaces_WhenAnalyzing_ThenDiagnostics()
         {
-            var code = EmbeddedResourceHelpers.Get(Assembly.GetExecutingAssembly(), $"{GetType().FullName}Code.cs");
+            var code = EmbeddedResourceHelpers.GetFromCallingAssembly($"{GetType().FullName}Code.cs");
             var expected = new DiagnosticResult("DC1004", DiagnosticSeverity.Warning)
                 .WithMessage("A list of disallowed namespaces must be configured for rule DC1001");
             var test = new CSharpAnalyzerTest<UsingNamespaceStatementAnalyzer, XUnitVerifier>

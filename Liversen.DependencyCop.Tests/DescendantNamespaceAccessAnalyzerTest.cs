@@ -10,7 +10,7 @@ namespace Liversen.DependencyCop
         [Fact]
         async Task GivenCodeReferringCodeInDescendantNamespace_WhenAnalyzing_ThenDiagnostics()
         {
-            var code = EmbeddedResourceHelpers.Get(Assembly.GetExecutingAssembly(), $"{GetType().FullName}Code.cs");
+            var code = EmbeddedResourceHelpers.GetFromCallingAssembly($"{GetType().FullName}Code.cs");
             var expected = Verify.Diagnostic()
                 .WithLocation(5, 62)
                 .WithMessage("Do not use type 'Info' from descendant namespace 'DescendantNamespaceAccessAnalyzer.Bank.Account'");
