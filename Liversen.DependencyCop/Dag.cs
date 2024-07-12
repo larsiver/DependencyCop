@@ -10,13 +10,13 @@ namespace Liversen.DependencyCop
     /// </summary>
     class Dag
     {
-        readonly Dictionary<string, Dependencies> _nodes = new Dictionary<string, Dependencies>();
+        readonly Dictionary<string, Dependencies> nodes = new Dictionary<string, Dependencies>();
 
         public ImmutableDictionary<string, ImmutableHashSet<string>> DirectVertices() =>
-            _nodes.ToImmutableDictionary(x => x.Key, x => x.Value.Direct.ToImmutableHashSet());
+            nodes.ToImmutableDictionary(x => x.Key, x => x.Value.Direct.ToImmutableHashSet());
 
         public ImmutableDictionary<string, ImmutableHashSet<string>> TransitiveVertices() =>
-            _nodes.ToImmutableDictionary(x => x.Key, x => x.Value.Transitive.ToImmutableHashSet());
+            nodes.ToImmutableDictionary(x => x.Key, x => x.Value.Transitive.ToImmutableHashSet());
 
         public void AddVertex(string source, string target)
         {
@@ -49,14 +49,14 @@ namespace Liversen.DependencyCop
                 while (current != source)
                 {
                     list = list.Add(current);
-                    current = _nodes[current].Direct.First(x => x == source || _nodes[x].Transitive.Contains(source));
+                    current = nodes[current].Direct.First(x => x == source || nodes[x].Transitive.Contains(source));
                 }
                 list = list.Add(source);
                 list = list.Add(target);
                 return list;
             }
             sourceDependencies.Direct.Add(target);
-            foreach (var dependencies in _nodes.Where(x => x.Key == source || (x.Key != target && x.Value.Transitive.Contains(source))).Select(x => x.Value.Transitive))
+            foreach (var dependencies in nodes.Where(x => x.Key == source || (x.Key != target && x.Value.Transitive.Contains(source))).Select(x => x.Value.Transitive))
             {
                 dependencies.Add(target);
                 dependencies.UnionWith(targetDependencies.Transitive);
@@ -66,12 +66,12 @@ namespace Liversen.DependencyCop
 
         Dependencies GetDependencies(string node)
         {
-            if (_nodes.TryGetValue(node, out var existingTargets))
+            if (nodes.TryGetValue(node, out var existingTargets))
             {
                 return existingTargets;
             }
             var targets = new Dependencies();
-            _nodes.Add(node, targets);
+            nodes.Add(node, targets);
             return targets;
         }
 
