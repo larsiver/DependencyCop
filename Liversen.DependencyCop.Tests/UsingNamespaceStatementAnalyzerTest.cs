@@ -7,6 +7,7 @@ using Microsoft.CodeAnalysis.Testing;
 using Microsoft.CodeAnalysis.Testing.Verifiers;
 using Shouldly;
 using Xunit;
+#pragma warning disable CS0618 // Type or member is obsolete
 
 namespace Liversen.DependencyCop
 {
