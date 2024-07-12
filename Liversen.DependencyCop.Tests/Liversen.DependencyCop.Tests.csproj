@@ -8,8 +8,10 @@
     <Compile Remove="DescendantNamespaceAccessAnalyzerTestCode.cs" />
     <Compile Remove="NamespaceCycleAnalyzerTestCode.cs" />
     <Compile Remove="UsingNamespaceStatementAnalyzerTestCode.cs" />
+    <Compile Remove="UsingNamespaceStatementFixCode.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="UsingNamespaceStatementFixCode.cs" />
     <EmbeddedResource Include="DescendantNamespaceAccessAnalyzerTestCode.cs" />
     <EmbeddedResource Include="NamespaceCycleAnalyzerTestCode.cs" />
     <EmbeddedResource Include="UsingNamespaceStatementAnalyzerTestCode.cs" />
