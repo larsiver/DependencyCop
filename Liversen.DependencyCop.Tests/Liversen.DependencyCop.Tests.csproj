@@ -8,10 +8,12 @@
     <Compile Remove="DescendantNamespaceAccessAnalyzerTestCode.cs" />
     <Compile Remove="NamespaceCycleAnalyzerTestCode.cs" />
     <Compile Remove="UsingNamespaceStatementAnalyzerTestCode.cs" />
-    <Compile Remove="UsingNamespaceStatementFixCode.cs" />
+    <Compile Remove="UsingNamespaceStatementFixTestCode.cs" />
+    <Compile Remove="UsingNamespaceStatementFixTestExpectedFixedCode.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="UsingNamespaceStatementFixCode.cs" />
+    <EmbeddedResource Include="UsingNamespaceStatementFixTestExpectedFixedCode.cs" />
+    <EmbeddedResource Include="UsingNamespaceStatementFixTestCode.cs" />
     <EmbeddedResource Include="DescendantNamespaceAccessAnalyzerTestCode.cs" />
     <EmbeddedResource Include="NamespaceCycleAnalyzerTestCode.cs" />
     <EmbeddedResource Include="UsingNamespaceStatementAnalyzerTestCode.cs" />
@@ -19,6 +21,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Analyzer.Testing" Version="1.1.2" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Analyzer.Testing.Xunit" Version="1.1.2" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.CodeFix.Testing.XUnit" Version="1.1.2" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Liversen.DependencyCop\Liversen.DependencyCop.csproj" />
