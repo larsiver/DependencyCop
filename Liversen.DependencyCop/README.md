@@ -10,5 +10,7 @@ This package contains a number of Roslyn analyzer rules using the .NET Compiler 
 
 [Rule DC1004: Rule DC1001 is not configured](https://github.com/larsiver/DependencyCop/blob/main/Liversen.DependencyCop/Documentation/DC1004.md)
 
+## Changelog
 
-
+### 1.0 - 2.0
+- Added FixProvider for DC1001.

@@ -25,3 +25,6 @@ The analyzers can be installed using the NuGet command line or the NuGet Package
 Install using the command line:
 
     Install-Package Liversen.DependencyCop
+
+## Resharper configuration
+If you use Resharper and want to use the DependencyCop fix provider (light bulb fix) for rule DC1001, you need to enable "Merge Visual Studio Quick Actions into ReSharper action indicator". This setting can be found in Resharper settings under "Environment" -> "Editor" -> "Visual Studio Features".

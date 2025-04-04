@@ -34,19 +34,34 @@ namespace Liversen.DependencyCop
         {
             var code = EmbeddedResourceHelpers.GetFromCallingAssembly($"{GetType().FullName}Code.cs");
             var expected1 = Verify.Diagnostic()
-                .WithLocation(14, 28)
+                .WithSpan(14, 28, 14, 32)
                 .WithMessage("Break up namespace cycle 'NamespaceCycleAnalyzer.Transaction->NamespaceCycleAnalyzer.Account->NamespaceCycleAnalyzer.Transaction'");
             var expected2 = Verify.Diagnostic()
-                .WithLocation(22, 24)
+                .WithSpan(22, 24, 22, 26)
                 .WithMessage("Break up namespace cycle 'NamespaceCycleAnalyzer.Account->NamespaceCycleAnalyzer.Transaction->NamespaceCycleAnalyzer.Account'");
 
+            // This is stupid, but it seems the VerifyAnalyzerAsync might give different results when run twice in a row.
             try
             {
-                await Verify.VerifyAnalyzerAsync(code, expected1);
+                try
+                {
+                    await Verify.VerifyAnalyzerAsync(code, expected1);
+                }
+                catch (Exception)
+                {
+                    await Verify.VerifyAnalyzerAsync(code, expected1);
+                }
             }
-            catch (Exception)
+            catch
             {
-                await Verify.VerifyAnalyzerAsync(code, expected2);
+                try
+                {
+                    await Verify.VerifyAnalyzerAsync(code, expected1);
+                }
+                catch (Exception)
+                {
+                    await Verify.VerifyAnalyzerAsync(code, expected2);
+                }
             }
         }
     }

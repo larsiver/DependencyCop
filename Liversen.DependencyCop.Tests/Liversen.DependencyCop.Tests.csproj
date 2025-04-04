@@ -8,15 +8,73 @@
     <Compile Remove="DescendantNamespaceAccessAnalyzerTestCode.cs" />
     <Compile Remove="NamespaceCycleAnalyzerTestCode.cs" />
     <Compile Remove="UsingNamespaceStatementAnalyzerTestCode.cs" />
+    <Compile Remove="UsingNamespaceStatement\AnalyzerTestCode.cs" />
+    <Compile Remove="UsingNamespaceStatement\FixProviderScenarios\AlreadyFullyQualifiedCode.cs" />
+    <Compile Remove="UsingNamespaceStatement\FixProviderScenarios\AlreadyFullyQualifiedFixedCode.cs" />
+    <Compile Remove="UsingNamespaceStatement\FixProviderScenarios\ArrayTestCode.cs" />
+    <Compile Remove="UsingNamespaceStatement\FixProviderScenarios\ArrayTestFixedCode.cs" />
+    <Compile Remove="UsingNamespaceStatement\FixProviderScenarios\AsyncMethodReturnCode.cs" />
+    <Compile Remove="UsingNamespaceStatement\FixProviderScenarios\AsyncMethodReturnFixedCode.cs" />
+    <Compile Remove="UsingNamespaceStatement\FixProviderScenarios\DoubleTestCode.cs" />
+    <Compile Remove="UsingNamespaceStatement\FixProviderScenarios\DoubleTestFixedCode.cs" />
+    <Compile Remove="UsingNamespaceStatement\FixProviderScenarios\ExtensionMethodCode.cs" />
+    <Compile Remove="UsingNamespaceStatement\FixProviderScenarios\ExtensionMethodFixedCode.cs" />
+    <Compile Remove="UsingNamespaceStatement\FixProviderScenarios\ExtensionMethodUsedTwiceCode.cs" />
+    <Compile Remove="UsingNamespaceStatement\FixProviderScenarios\ExtensionMethodUsedTwiceFixedCode.cs" />
+    <Compile Remove="UsingNamespaceStatement\FixProviderScenarios\GenericTestCode.cs" />
+    <Compile Remove="UsingNamespaceStatement\FixProviderScenarios\GenericTestFixedCode.cs" />
+    <Compile Remove="UsingNamespaceStatement\FixProviderScenarios\ListTestCode.cs" />
+    <Compile Remove="UsingNamespaceStatement\FixProviderScenarios\ListTestFixedCode.cs" />
+    <Compile Remove="UsingNamespaceStatement\FixProviderScenarios\MethodParameterCode.cs" />
+    <Compile Remove="UsingNamespaceStatement\FixProviderScenarios\MethodParameterFixedCode.cs" />
+    <Compile Remove="UsingNamespaceStatement\FixProviderScenarios\MethodParameterWithAttributeCode.cs" />
+    <Compile Remove="UsingNamespaceStatement\FixProviderScenarios\MethodParameterWithAttributeFixedCode.cs" />
+    <Compile Remove="UsingNamespaceStatement\FixProviderScenarios\MethodReturnCode.cs" />
+    <Compile Remove="UsingNamespaceStatement\FixProviderScenarios\MethodReturnFixedCode.cs" />
+    <Compile Remove="UsingNamespaceStatement\FixProviderScenarios\SimpleTestCode.cs" />
+    <Compile Remove="UsingNamespaceStatement\FixProviderScenarios\SimpleTestFixedCode.cs" />
+    <Compile Remove="UsingNamespaceStatement\FixProviderScenarios\SubSpaceTestCode.cs" />
+    <Compile Remove="UsingNamespaceStatement\FixProviderScenarios\SubSpaceTestFixedCode.cs" />
+    <Compile Remove="UsingNamespaceStatement\FixProviderScenarios\TwoUsingStatementsCode.cs" />
+    <Compile Remove="UsingNamespaceStatement\FixProviderScenarios\TwoUsingStatementsFixedCode.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DescendantNamespaceAccessAnalyzerTestCode.cs" />
     <EmbeddedResource Include="NamespaceCycleAnalyzerTestCode.cs" />
-    <EmbeddedResource Include="UsingNamespaceStatementAnalyzerTestCode.cs" />
+    <EmbeddedResource Include="UsingNamespaceStatement\AnalyzerTestCode.cs" />
+    <EmbeddedResource Include="UsingNamespaceStatement\FixProviderScenarios\ExtensionMethodUsedTwiceCode.cs" />
+    <EmbeddedResource Include="UsingNamespaceStatement\FixProviderScenarios\ExtensionMethodCode.cs" />
+    <EmbeddedResource Include="UsingNamespaceStatement\FixProviderScenarios\ArrayTestCode.cs" />
+    <EmbeddedResource Include="UsingNamespaceStatement\FixProviderScenarios\ExtensionMethodUsedTwiceFixedCode.cs" />
+    <EmbeddedResource Include="UsingNamespaceStatement\FixProviderScenarios\ExtensionMethodFixedCode.cs" />
+    <EmbeddedResource Include="UsingNamespaceStatement\FixProviderScenarios\ArrayTestFixedCode.cs" />
+    <EmbeddedResource Include="UsingNamespaceStatement\FixProviderScenarios\AsyncMethodReturnCode.cs" />
+    <EmbeddedResource Include="UsingNamespaceStatement\FixProviderScenarios\AsyncMethodReturnFixedCode.cs" />
+    <EmbeddedResource Include="UsingNamespaceStatement\FixProviderScenarios\MethodParameterWithAttributeCode.cs" />
+    <EmbeddedResource Include="UsingNamespaceStatement\FixProviderScenarios\MethodParameterWithAttributeFixedCode.cs" />
+    <EmbeddedResource Include="UsingNamespaceStatement\FixProviderScenarios\AlreadyFullyQualifiedCode.cs" />
+    <EmbeddedResource Include="UsingNamespaceStatement\FixProviderScenarios\AlreadyFullyQualifiedFixedCode.cs" />
+    <EmbeddedResource Include="UsingNamespaceStatement\FixProviderScenarios\TwoUsingStatementsCode.cs" />
+    <EmbeddedResource Include="UsingNamespaceStatement\FixProviderScenarios\TwoUsingStatementsFixedCode.cs" />
+    <EmbeddedResource Include="UsingNamespaceStatement\FixProviderScenarios\DoubleTestCode.cs" />
+    <EmbeddedResource Include="UsingNamespaceStatement\FixProviderScenarios\DoubleTestFixedCode.cs" />
+    <EmbeddedResource Include="UsingNamespaceStatement\FixProviderScenarios\GenericTestCode.cs" />
+    <EmbeddedResource Include="UsingNamespaceStatement\FixProviderScenarios\GenericTestFixedCode.cs" />
+    <EmbeddedResource Include="UsingNamespaceStatement\FixProviderScenarios\ListTestCode.cs" />
+    <EmbeddedResource Include="UsingNamespaceStatement\FixProviderScenarios\ListTestFixedCode.cs" />
+    <EmbeddedResource Include="UsingNamespaceStatement\FixProviderScenarios\MethodParameterCode.cs" />
+    <EmbeddedResource Include="UsingNamespaceStatement\FixProviderScenarios\MethodParameterFixedCode.cs" />
+    <EmbeddedResource Include="UsingNamespaceStatement\FixProviderScenarios\MethodReturnCode.cs" />
+    <EmbeddedResource Include="UsingNamespaceStatement\FixProviderScenarios\MethodReturnFixedCode.cs" />
+    <EmbeddedResource Include="UsingNamespaceStatement\FixProviderScenarios\SimpleTestCode.cs" />
+    <EmbeddedResource Include="UsingNamespaceStatement\FixProviderScenarios\SimpleTestFixedCode.cs" />
+    <EmbeddedResource Include="UsingNamespaceStatement\FixProviderScenarios\SubSpaceTestCode.cs" />
+    <EmbeddedResource Include="UsingNamespaceStatement\FixProviderScenarios\SubSpaceTestFixedCode.cs" />    
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Analyzer.Testing" Version="1.1.2" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Analyzer.Testing.Xunit" Version="1.1.2" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.CodeFix.Testing.XUnit" Version="1.1.2" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Liversen.DependencyCop\Liversen.DependencyCop.csproj" />
